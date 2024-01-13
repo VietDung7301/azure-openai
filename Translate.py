@@ -1,15 +1,16 @@
+import os
+
 import streamlit as st
 from langchain.schema import SystemMessage, HumanMessage, AIMessage
 from langchain.prompts.few_shot import FewShotPromptTemplate
 from langchain.prompts.prompt import PromptTemplate
-from utils import createPrompt,  few_shot_prompt
 
+from utils import createPrompt,  few_shot_prompt
 from api import get_answer, get_model, __model_list
 from env import load_dotenv_if_exists
-from vocabulary_controller import update_user_by_id
+from vocabulary_controller import add_vocabulary
 
-_user_id = "65a278846981e7f63d528129"
-_username = "oldman team 4+"
+_user_id = os.getenv("EXAMPLE_USER_ID")
 
 
 # examples = [
@@ -103,10 +104,10 @@ _init_messages = [
     # AI: "No vocab found!" -> Not good because "こんにちは" is a word in japanese
 # SystemMessage(
 # content="""
-# You are a machine which create usage example of vocabulary in japanese. 
+# You are a machine which create usage example of vocabulary in japanese.
 # Your task is take a word in japanese and return meaning, usage example of that word in japanese.
 # First, output meaning of the word in japanese and translate it to english in one line with format: meaning_japanese - meaning_english.
-# Second, output from 1 to 5 usage examples. Each output sentence in one line. Output sentence must be formal and polite. Respond with "No vocab found!" if no relevant vocabluary were found. 
+# Second, output from 1 to 5 usage examples. Each output sentence in one line. Output sentence must be formal and polite. Respond with "No vocab found!" if no relevant vocabluary were found.
 # Do not write something like "I apologize, but I don't understand what you mean by "repeart me." Could you please provide more context or clarify your request?".
 # """
 # ),
@@ -185,10 +186,9 @@ def select_model():
 
 def on_click_save(messages, key, idx):
     st.session_state[key] = True
-    _ = update_user_by_id(
+    _ = add_vocabulary(
         _user_id,
-        _username, 
-        [{"vocabulary": messages[idx-1].content, "example": messages[idx].content}]
+        {"vocabulary": messages[idx-1].content, "example": messages[idx].content}
     )
     print(_)
     print(
