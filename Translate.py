@@ -1,12 +1,13 @@
 import streamlit as st
 from langchain.schema import SystemMessage, HumanMessage, AIMessage
 
+import example_user
 from api import get_answer, get_model, __model_list
 from env import load_dotenv_if_exists
-from vocabulary_controller import insert_azure_doc, update_user_by_id
+from vocabulary_controller import add_vocabulary
 
-_user_id = "65a278846981e7f63d528129"
-_username = "oldman team 4+"
+_user_id = example_user.user_id
+_username = example_user.username
 
 # custom it for 2 tasks
 _init_messages = [
@@ -78,9 +79,8 @@ def select_model():
 
 def on_click_save(messages, key, idx):
     st.session_state[key] = True
-    _ = update_user_by_id(
+    _ = add_vocabulary(
         _user_id,
-        _username, 
         [{"vocabulary": messages[idx-1].content, "example": messages[idx].content}]
     )
     print(_)
