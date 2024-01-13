@@ -10,7 +10,9 @@ langchain-community = "0.0.11"
 langchain-openai = "0.0.2.post1"
 langchain = "0.1.0"
 streamlit = "1.27.2"
-pymongo	= "4.6.1"
+requests = "2.21.0"
+json = "2.0.9"
+pymongo = "4.6.1" # pymongo[srv]
 
 [dev-packages]
 
