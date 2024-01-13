@@ -17,7 +17,11 @@ from langchain_community.callbacks import get_openai_callback
 #     return __init_messages_list[model_name]
 
 
-__model_list = ("GPT35TURBO", "GPT35TURBO16K", "ADA")
+__model_list = (
+    "GPT35TURBO",
+    "GPT35TURBO16K",
+    # "ADA"
+)
 
 
 def get_model(model_name, **kwargs):
@@ -45,7 +49,7 @@ if __name__ == "__main__":
 
     # setup system messages
     messages = [
-        SystemMessage(content="You are a grumpy Yordle and often speak ill of others")
+        SystemMessage(content="You are a grumpy Yordle and often speak ill of others. You never answer questions directly, but instead respond with sarcastic remarks.")
     ]
 
     # send new message
