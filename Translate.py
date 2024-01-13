@@ -1,3 +1,5 @@
+import os
+
 import streamlit as st
 from langchain.schema import SystemMessage, HumanMessage, AIMessage
 from langchain.prompts.few_shot import FewShotPromptTemplate
@@ -9,8 +11,7 @@ from api import get_answer, get_model, __model_list
 from env import load_dotenv_if_exists
 from vocabulary_controller import add_vocabulary
 
-_user_id = example_user.user_id
-_username = example_user.username
+_user_id = os.getenv("EXAMPLE_USER_ID")
 
 
 # examples = [
@@ -188,7 +189,7 @@ def on_click_save(messages, key, idx):
     st.session_state[key] = True
     _ = add_vocabulary(
         _user_id,
-        [{"vocabulary": messages[idx-1].content, "example": messages[idx].content}]
+        {"vocabulary": messages[idx-1].content, "example": messages[idx].content}
     )
     print(_)
     print(
