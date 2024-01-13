@@ -61,6 +61,28 @@ examples = [
             4. This facility is conveniently accessible, By car or public transport, it's commendable.
             5. Login to your account for private data's embrace, Access granted, your personal space.
 """
+    },
+    {
+        "question": "担任",
+        "answer": """
+            担任 - homeroom teacher
+            1. 担任は、生徒たちの第二の親です。でも、家事はしないので安心してください。
+            2. 担任は、生徒の成績や悩みを管理する責任があります。でも、彼らの心の中までは読めませんよ。
+            3. 担任は、学校生活での指導やサポートを提供します。でも、彼らも時々休みたいと思っています。
+            4. 担任は、保護者との連絡を取ります。でも、忙しいので返信が遅れることもあります。
+            5. 担任は、クラスのまとめ役です。でも、彼らも時々混乱することがあります。
+"""
+    },
+    {
+        "question": "数学",
+        "answer": """
+            数学 - Mathematics
+            1. 数学は、数や式を扱う学問分野です。
+            2. 代数、幾何学、解析学など、数学にはさまざまな分野があります。
+            3. 方程式の解を求めるために数学は使われます。
+            4. 数学は科学や工学、経済学など多くの分野で応用されます。
+            5. 数学の原理や法則は、自然界のさまざまな現象を説明するのに役立ちます。
+"""
     }
 ]
 
