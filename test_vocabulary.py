@@ -29,3 +29,9 @@ from vocabulary_controller import *
 #     {"vocabulary": "次第", "example": "次第に減っていくでしょう？"}, # update example
 #     ]
 # print(update_user_by_id("65a25e01f84352e2bf5f07e6", name, vocabularies))
+
+#----------------------------------------------------------------------------------------
+
+# add vocabularies
+# vocabularies = {"vocabulary": "提供", "example": "この番組は、ご覧のスポンサーの提供でお送りしました"}
+# print(add_vocabulary("65a25e01f84352e2bf5f07e6", vocabularies))
