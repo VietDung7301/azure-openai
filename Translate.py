@@ -6,7 +6,6 @@ from langchain.prompts.few_shot import FewShotPromptTemplate
 from langchain.prompts.prompt import PromptTemplate
 
 from utils import createPrompt,  few_shot_prompt
-import example_user
 from api import get_answer, get_model, __model_list
 from env import load_dotenv_if_exists
 from vocabulary_controller import add_vocabulary

@@ -2,7 +2,6 @@ import streamlit as st
 import os
 
 from vocabulary_controller import find_user_vocabulary_by_id
-import example_user
 
 
 _user_id = os.getenv("EXAMPLE_USER_ID")
