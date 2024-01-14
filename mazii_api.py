@@ -23,16 +23,17 @@ def process_api_response(api_response):
     
     return processed_data
 
-"""
-    dictionary_type: javi, jaen
-"""
-def call_mazii_api(query, dictionary_type="javi", limit=20, page=1, result_type="word"):
-    api_url = "https://mazii.net/api/search"
 
+def call_mazii_api(query, dictionary_type="javi", limit=20, page=1, result_type="word"):
+    """
+    dictionary_type: javi, jaen
+    """
+    assert dictionary_type in ["javi", "jaen"]
+    
+    api_url = "https://mazii.net/api/search"
     headers = {
         "Content-Type": "application/json"
     }
-
     data = {
         "dict": dictionary_type,
         "limit": limit,
@@ -57,10 +58,12 @@ def call_mazii_api(query, dictionary_type="javi", limit=20, page=1, result_type=
         print(f"Error making API request: {e}")
         return None
 
-# Example usage:
-# query_result = call_mazii_api("途中")
-# if query_result:
-#     print("API Response:")
-#     print(json.dumps(query_result, indent=2, ensure_ascii=False))
-# else:
-#     print("API request failed.")
+
+if __name__ == "__main__":
+    # Test the API call
+    query_result = call_mazii_api("途中")
+    if query_result:
+        print("API Response:")
+        print(json.dumps(query_result, indent=2, ensure_ascii=False))
+    else:
+        print("API request failed.")

@@ -93,3 +93,14 @@ def add_vocabulary(user_id, new_vocabularies):
             "code" : False,
             "message" : "No matching user found!",
         }
+
+
+if __name__ == "__main__":
+    _user_id = "65a314b61af36d7255ea84b5"
+    add_vocabulary(_user_id, {
+        "vocabulary": "hello",
+        "phonetic": "xin chào",
+        "example": "hello world"
+    })
+    list_word = find_user_vocabulary_by_id(_user_id)
+    print(list_word)
