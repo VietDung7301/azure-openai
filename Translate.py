@@ -27,11 +27,11 @@ def init_messages():
 
 
 def select_model():
-    model_name = st.sidebar.radio(
-        "Choose LLM: (require refresh after change)", __model_list
-    )
+    # model_name = st.sidebar.radio(
+    #     "Choose LLM: (require refresh after change)", __model_list
+    # )
     return get_model(
-        model_name=model_name,
+        model_name="GPT35TURBO",
     )
 
 
@@ -92,11 +92,11 @@ def main():
         #     with st.chat_message("assistant"):
         #         st.markdown(message.content)
 
-    costs = st.session_state.get("costs", [])
-    st.sidebar.markdown("## Costs")
-    st.sidebar.markdown(f"**Total cost: ${sum(costs):.5f}**")
-    for cost in costs:
-        st.sidebar.markdown(f"- ${cost:.5f}")
+    # costs = st.session_state.get("costs", [])
+    # st.sidebar.markdown("## Costs")
+    # st.sidebar.markdown(f"**Total cost: ${sum(costs):.5f}**")
+    # for cost in costs:
+    #     st.sidebar.markdown(f"- ${cost:.5f}")
 
 
 if __name__ == "__main__":
