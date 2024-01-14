@@ -63,3 +63,44 @@ def update_user_by_id(user_id, new_name, new_vocabularies):
             "code" : False,
             "message" : "No matching user found!",
         }
+
+def add_vocabulary(user_id, new_vocabularies):
+    from bson.objectid import ObjectId
+
+    _id = ObjectId(user_id)
+    # Tạo dictionary chứa thông tin cần cập nhật
+    
+    update_data = {
+        "$push": {
+            "vocabularies": new_vocabularies
+        }
+    }
+
+    # Cập nhật document trong collection dựa trên user_id
+    updated_document = collections.find_one_and_update(
+        {"_id": _id},
+        update_data,
+        return_document=True
+    )
+    if updated_document:
+        return {
+            "code" : True,
+            "message" : "User updated successfully!",
+            "new_document" : updated_document
+        }
+    else:
+        return {
+            "code" : False,
+            "message" : "No matching user found!",
+        }
+
+
+if __name__ == "__main__":
+    _user_id = "65a314b61af36d7255ea84b5"
+    add_vocabulary(_user_id, {
+        "vocabulary": "hello",
+        "phonetic": "xin chào",
+        "example": "hello world"
+    })
+    list_word = find_user_vocabulary_by_id(_user_id)
+    print(list_word)
