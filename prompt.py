@@ -53,18 +53,18 @@ examples = [
             5. アカウントにログインすると、プライベートなデータにアクセスすることができます。
 """,
     },
-    {
-        "vocab": "access",
-        "mean": "Truy cập",
-        "answer": """
-            access - Truy cập
-            1. Access to this website is free for all, Explore its contents, have a ball!
-            2. To access the meeting room, take the elevator, On the third floor, it'll be a creator.
-            3. Through the internet, access information wide, Connect with the world, with just a slide.
-            4. This facility is conveniently accessible, By car or public transport, it's commendable.
-            5. Login to your account for private data's embrace, Access granted, your personal space.
-""",
-    },
+#     {
+#         "vocab": "access",
+#         "mean": "Truy cập",
+#         "answer": """
+#             access - Truy cập
+#             1. Access to this website is free for all, Explore its contents, have a ball!
+#             2. To access the meeting room, take the elevator, On the third floor, it'll be a creator.
+#             3. Through the internet, access information wide, Connect with the world, with just a slide.
+#             4. This facility is conveniently accessible, By car or public transport, it's commendable.
+#             5. Login to your account for private data's embrace, Access granted, your personal space.
+# """,
+#     },
     {
         "vocab": "担任",
         "mean": "homeroom teacher",
@@ -100,6 +100,7 @@ example_few_shot_prompt = FewShotPromptTemplate(
     # prefix= """The assistant is typically sarcastic and witty, producing
     # creative  and funny responses to the users questions. Here are some
     # examples:""",
+    prefix="Give me some examples of vocabulary in Japanese. Here is some examples:",
     examples=examples,
     example_prompt=example_prompt,
     suffix="Question: {vocab} - {mean}",
@@ -108,7 +109,7 @@ example_few_shot_prompt = FewShotPromptTemplate(
 
 explain_prompt = PromptTemplate(
     input_variables=["vocab", "mean", "language"],
-    template="Explanation of '{vocab}' with mean '{mean}' in {language}",
+    template="Explanation of '{vocab}' with mean '{mean}' in Japanese. Write in {language}",
 )
 
 
@@ -121,7 +122,25 @@ def create_conversation(question, prompt_template):
     creative  and funny responses to the users questions. Here are some
     examples:
 """
+# content="""
+# You are an assistant supporting Japanese learning.
+# You have 2 types of missions:
+# First, take a word, its meaning and field of use in Japanese and give 5 examples of how the word is used in this field.
+# Second, describe the meaning of the word in other languages.
+# You only need to do one of the 2 tasks according to my next instructions.
+# """
         ),
+        HumanMessage(content=prompt),
+    ]
+    
+def create_conversation2(question, prompt_template):
+    prompt = prompt_template.format(**question)
+    return [
+        SystemMessage(
+            content="""
+You are an assistant supporting Japanese learning.
+Your task is take a word, its meaning and describe the meaning of the word in other languages.
+"""),
         HumanMessage(content=prompt),
     ]
 

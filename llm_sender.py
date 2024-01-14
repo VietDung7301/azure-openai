@@ -6,7 +6,7 @@ import streamlit as st
 from api import get_answer, get_model
 from messages import ChatExampleMessage, ChatExplainMessage, HumanVocabMessage, MaziiApiMessage
 from langchain.schema import AIMessage
-from prompt import example_few_shot_prompt, explain_prompt, create_conversation
+from prompt import create_conversation2, example_few_shot_prompt, explain_prompt, create_conversation
 from vocabulary_controller import add_vocabulary
 
 
@@ -42,7 +42,7 @@ class ChatMessageSender:
         with st.spinner("ChatGPT is typing ..."):
             answer, cost = get_answer(
                 self.llm,
-                create_conversation(
+                create_conversation2(
                     {
                         "vocab": vocab,
                         "mean": mean,
